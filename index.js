@@ -33,7 +33,7 @@ const win=()=>{
 
 
 }
-
+let flag=false;
 let boxes=document.getElementsByClassName("box");
 Array.from(boxes).forEach(element=>{
     
@@ -44,11 +44,25 @@ Array.from(boxes).forEach(element=>{
             turn=changeTurn();
             turnmusic.play();
             win();
-            if(!gameover){
-            document.getElementsByClassName("info")[0].innerText="Turn for"+ " "+turn;
+            if(!isgameover){
+                document.getElementsByClassName("info")[0].innerText= "Turn for"+" "+ turn;
+            }
+            if(gameover&&flag){
+                document.getElementsByClassName("info")[0].innerText= "Turn for"+" "+ turn;
             }
         
         }
     })
+})
+let reset=document.getElementById('reset');
+reset.addEventListener('click' ,()=>{
+    flag=true;
+     Array.from(boxes).forEach(ele=>{
+        let boxtext=ele.querySelector('.boxtext');
+        boxtext.innerText='';
+         
+     })
+     document.querySelector('.imgbox').getElementsByTagName('img')[0].style.width='0px';
+
 })
 
